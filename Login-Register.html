@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+         }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color:palevioletred ;
+            }
+         .log-register-box{
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background-color:transparent;
+            border: 2px solid white;
+            backdrop-filter: blur(50px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+             width: 400px;
+            height: 450px;
+            justify-content: center;
+            align-items: center;
+            gap: 5px 20px;
+            color: white;
+        }
+        input{
+            border-radius: 5px;
+            height: 30px;
+            width: 250px;
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+            padding-left:10px ;
+        }
+        ::placeholder{
+            color: white;
+            padding-left: 10px;
+        }
+        button{
+            height: 35px;
+            width: 150px;
+            border-radius: 5px;
+            border: none;
+            background-color: white;
+            color: palevioletred;
+            cursor: pointer;
+        }
+        button:hover{
+            color: white;
+            background-color: rgb(243, 151, 182);
+        }
+        </style>
+</head>
+<body>
+  <form action="get_register.php" method="post">
+    <div class="REGISTER">
+    <div class="log-register-box">
+        <h2>Register</h2>
+        <br>
+    <input type="text" name="username" placeholder="username">
+    <br>
+    <input type="text" name="Mobile_No" placeholder="Mobile No"> 
+    <br>
+    <input type="email" name="Email_id" placeholder="Email id">
+    <br>
+    <input type="date" name="Birth_Date" placeholder="Date of Birth"> 
+    <br>
+    <input type="password" name="password" placeholder="Password">
+    <br>
+    <button>Register</button>
+    <br>
+    <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+    </div>
+   </div>
+  </form>
+  
+   <form name="f1" action="get_login.php" method="post">
+    <div class="LOGIN" style="display:none;">
+    <div class="log-register-box">
+      <h2>Login</h2>
+      <br>
+    <input type="text" name="username" placeholder="username">
+    <br>
+    <input type="password" name="password" placeholder="Password">
+    <br>
+    <button>Login</button>
+    <br>
+    <p>Don't have an account? <a href="#" id="showRegister">Register</a></p>  
+    </div>
+    </div>
+</form>
+    <script>
+    document.getElementById("showLogin").onclick = function () 
+  {
+    document.querySelector(".REGISTER").style.display = "none";
+    document.querySelector(".LOGIN").style.display = "block";
+  };
+
+    document.getElementById("showRegister").onclick = function () 
+  {
+    document.querySelector(".LOGIN").style.display = "none";
+    document.querySelector(".REGISTER").style.display = "block";
+  };
+
+    </script>
+</body>
+</html>
