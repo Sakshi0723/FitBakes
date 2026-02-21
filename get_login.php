@@ -1,36 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php 
-    include ('fitbakes_database.php');
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+<?php
+session_start();
+include('fitbakes_database.php');
 
-    $username=($username);
-    $password=($password);
-    $username=mysqli_real_escape_string($conn,$username);
-    $password=mysqli_real_escape_string($conn,$password);
+$username = mysqli_real_escape_string($conn, $_POST['username']);
+$password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    $sql="insert into login_tbl( username, password) values ('$username', '$password')";
-    $sql="select * from register_tbl where username='$username' and password='$password'";
-    $result=mysqli_query($conn,$sql);
-   
-    $row=mysqli_fetch_array($result,MYSQLI_ASSOC);
-    $count=mysqli_num_rows($result);
+$sql = "SELECT * FROM register_tbl 
+        WHERE username='$username' AND password='$password'";
+$result = mysqli_query($conn, $sql);
 
-    if($count==1)
-    {
-        echo "<script>alert('Login successfully!');window.location.href='profile.html';</script>";
-    }
-    else
-    {
-        echo "<script>alert('Invalid Username or Password');window.location.href='Login-Register.html';</script>";
-    }
-    ?>
-</body>
-</html>
+if (mysqli_num_rows($result) == 1) {
+
+    $row = mysqli_fetch_assoc($result);
+
+    // ✅ Store only needed data
+    $_SESSION['user_id'] = $row['user_id'];  
+    $_SESSION['username'] = $row['username'];
+
+    echo "<script>
+            alert('Login Successfully!');
+            window.location.href='profile.php';
+          </script>";
+} else {
+    echo "<script>
+            alert('Invalid Username or Password');
+            window.location.href='Login-Register.html';
+          </script>";
+}
+?>

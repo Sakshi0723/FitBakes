@@ -1,26 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-     <?php 
-    include ('fitbakes_database.php');
-    $username=$_POST['username'];
-    $Mobile_No=$_POST['Mobile_No'];
-    $Email_id=$_POST['Email_id'];
-    $Birth_Date=$_POST['Birth_Date'];
-    $password=$_POST['password'];
+<?php
+include('fitbakes_database.php');
 
-    $sql="insert into register_tbl( username, Mobile_No, Email_id, Birth_Date, password) values ('$username', '$Mobile_No', '$Email_id', '$Birth_Date', '$password')";
+$username = mysqli_real_escape_string($conn, $_POST['username']);
+$Mobile_No = mysqli_real_escape_string($conn, $_POST['Mobile_No']);
+$Email_id = mysqli_real_escape_string($conn, $_POST['Email_id']);
+$Birth_Date = mysqli_real_escape_string($conn, $_POST['Birth_Date']);
+$password = mysqli_real_escape_string($conn, $_POST['password']);
+
+// Check if already registered
+$sql_check = "SELECT * FROM register_tbl WHERE username='$username' OR Email_id='$Email_id'";
+$result_check = mysqli_query($conn, $sql_check);
+
+if(mysqli_num_rows($result_check) > 0){
+
+    echo "<script>
+            alert('You are already registered! Please login.');
+            window.location.href='Login-Register.html';
+          </script>";
+
+} else {
+
+    $sql = "INSERT INTO register_tbl (username, Mobile_No, Email_id, Birth_Date, password)
+            VALUES ('$username', '$Mobile_No', '$Email_id', '$Birth_Date', '$password')";
+
     if(mysqli_query($conn, $sql)){
-        echo "<script>alert('Register successfully!');window.location.href='Login-Register.html';</script>";
+        echo "<script>
+                alert('Register successfully!');
+                window.location.href='Login-Register.html';
+              </script>";
     } else {
         echo "Error: " . mysqli_error($conn);
     }
-    mysqli_close($conn);
-    ?>
-</body>
-</html>
+}
+
+mysqli_close($conn);
+?>

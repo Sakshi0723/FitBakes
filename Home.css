@@ -4,12 +4,13 @@ body {
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            margin: auto;
         }
 .Logo {
     justify-content: left;
     justify-items: left;
    display: inline-block;
-     width: 60px; /* smaller on mobile */
+     width: 70px; /* smaller on mobile */
     height: auto;
 }
 
@@ -21,14 +22,14 @@ body {
     background-color: rgb(242, 154, 183);
     border-radius: 10px;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
-    padding: 10px 15px;
+   padding: 7px;
+    margin-top: 10px;
+    margin-bottom: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+  
 }
-.nevigation {
-   display: flex;
-    flex-wrap: wrap; /* allows items to move to next line */
-    gap: 10px;
-    justify-content: flex-end;
-}
+
 .nevigation a {
    text-decoration: none;
     color: white;
@@ -122,20 +123,4 @@ img {
      height: auto;
    
      }
-  @media only screen and (max-width: 768px) {
-    .header {
-        flex-direction: column; /* stack logo and nav */
-        align-items: flex-start;
-    }
-
-    .nevigation {
-        flex-direction: column; /* stack links vertically */
-        width: 100%;
-    }
-
-    .nevigation a {
-        width: 100%; /* links take full width */
-        text-align: left;
-        padding: 10px;
-    }
-}
+  
