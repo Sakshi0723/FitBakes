@@ -145,7 +145,7 @@
         <a href="reminder.html"> <i class="fa-solid fa-calendar-days"></i></a>
         <a href="health.html"><i class="fa-solid fa-heart-pulse"></i> Health Suggestions</a>
         <a href="fav.html"><i class="fa-solid fa-heart" style="color: #f90101;"></i></a>
-        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
         <a href="Profile.php"><i class="fa-solid fa-circle-user"></i>&nbsp;&nbsp;Profile</a>
     </nav>
     </div>
@@ -171,11 +171,11 @@
     <h2>Order Your Custom Cake 🎂</h2>
 
     <form class="order-form" action="custome_review.php" method="POST" enctype="multipart/form-data">
-      <input type="text" placeholder="Your Name" required>
-      <input type="tel" placeholder="Phone Number" required>
-      <input type="email" placeholder="Email Address">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <input type="email" name="email" placeholder="Email Address">
 
-      <select class="mySelect" onchange="showOtherInput(this)" required >
+      <select class="mySelect" name="cake_type" onchange="showOtherInput(this)" required >
         <option disabled selected>Choose Cake Type</option>
         <option>Chocolate</option>
         <option>Vanilla</option>
@@ -189,7 +189,7 @@
       </select>
           <input type="text" class="otherInput" placeholder="Please specify" style="display:none;">
 
-      <select class="mySelect" onchange="showOtherInput(this)" required>
+      <select class="mySelect" name="occasion" onchange="showOtherInput(this)" required>
         <option disabled selected>Occasion</option>
         <option>Birthday</option>
         <option>Anniversary</option>
@@ -198,7 +198,7 @@
       </select>
      
       <input type="text" class="otherInput" placeholder="Please specify" style="display:none;">
-        <select class="mySelect" onchange="showOtherInput(this)" required>
+        <select class="mySelect" name="days" onchange="showOtherInput(this)" required>
          <option disabled selected>In How many Days you want</option>
          <option>more than 5 hours</option>
          <option>1 Day</option>
@@ -210,24 +210,25 @@
       </select>
 
       <input type="text" class="otherInput" placeholder="Please specify" style="display:none;">
-      <select class="mySelect" onchange="showOtherInput(this)"required>
+      <select class="mySelect" name="weight" onchange="showOtherInput(this)" required>
         <option disabled selected>Weight</option>
-        <option>1kg</option>
-        <option>1.5kg</option>
-        <option>2kg</option>
-        <option>2.5kg</option>
-        <option>3kg</option>
-        <option>3.5kg</option>
-        <option>4kg</option>
+        <option>1 Kg</option>
+        <option>1.5 Kg</option>
+        <option>2 Kg</option>
+        <option>2.5 Kg</option>
+        <option>3 Kg</option>
+        <option>3.5 Kg</option>
+        <option>4 Kg</option>
         <option value="Other">Other</option>
       </select>
       
 
-      <input type="text" class="otherInput" placeholder="Please specify" style="display:none;">
+      <input type="text" class="otherInput"  placeholder="Please specify" style="display:none;">
       
-      <input type="file" id="cakeImage" accept="image/*">
+      <input type="number" name="quantity" placeholder="Quantity" value="1" min="1" required>
+      <input type="file" id="cakeImage" name="image" accept="image/*">
     
-      <textarea placeholder="Customization details (message...)"></textarea>
+      <textarea placeholder="Customization details (message...)" name="message"></textarea>
 
       <button type="submit">Place Order</button>
     </form>

@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['user_id'])){
+    header("Location: Login-Register.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,9 +36,8 @@ img{width:80px;height:80px;object-fit:cover;}
         <a href="menu.php"><i class="fa-solid fa-bars"></i>&nbsp;&nbsp;Menu</a>
         <a href="reminder.html"> <i class="fa-solid fa-calendar-days"></i></a>
         <a href="health.html"><i class="fa-solid fa-heart-pulse"></i> Health Suggestions</a>
-        <a href="fav.html"><i class="fa-solid fa-heart" style="color: #f90101;"></i></a>
-        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
-        <a href="Profile.html"><i class="fa-solid fa-circle-user"></i>&nbsp;&nbsp;Profile</a>
+        <a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a href="Profile.php"><i class="fa-solid fa-circle-user"></i>&nbsp;&nbsp;Profile</a>
     </nav>
     </div>
 </header>
@@ -40,7 +47,9 @@ img{width:80px;height:80px;object-fit:cover;}
 <h3 id="total"></h3>
 
 <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let userId=<?php echo $_SESSION['user_id']; ?>;
+let cartKey= "cart_" + userId;
+let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
 let cartDiv = document.getElementById("cart");
 let total = 0;
 
@@ -62,13 +71,17 @@ cart.forEach(item => {
 document.getElementById("total").innerText = "Total: ₹" + total;
 function removeFromCart(id){
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
+   
+  id=Number(id);
 
   let item = cart.find(p => p.id === id);
 
-  if(item.quantity > 1){
-    item.quantity--;
-  } else {
-    cart = cart.filter(p => p.id !== id);
+  if(item){
+    if(item.quantity > 1){
+      item.quantity--;
+    } else {
+      cart = cart.filter(p => Number(p.id) !== id);
+    }
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <title>Contact Page</title>
+    <style>
+    body{
+font-family: Arial;
+background-image: url(images/cakeimage.png);
+background-size: cover;
+    }
+         .footer{
+  background:black;
+  color:white;
+  padding:40px 0 10px 0;
+  margin-top:50px;
+}
+
+.footer-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:30px;
+  width:85%;
+  margin:auto;
+}
+
+.footer-section h3{
+  margin-bottom:15px;
+}
+
+.footer-section p{
+  font-size:14px;
+  line-height:1.6;
+}
+
+.footer-section ul{
+  list-style:none;
+  padding:0;
+}
+
+.footer-section ul li{
+  margin:8px 0;
+}
+
+.footer-section ul li a{
+  text-decoration:none;
+  color:white;
+  font-size:14px;
+}
+
+.footer-section ul li a:hover{
+  text-decoration:underline;
+}
+
+.social-icons a{
+  color:white;
+  font-size:20px;
+  margin-right:15px;
+}
+
+.social-icons a:hover{
+  color:#ffe4ec;
+}
+
+.footer-bottom{
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,0.3);
+  margin-top:20px;
+  padding-top:10px;
+  font-size:14px;
+}
+
+
+h2{
+    color: rgb(237, 67, 124);
+    display: flex;
+    position: relative;
+    align-items: center;
+   justify-content: center;
+    margin-bottom: 20px;
+}
+h2 i{
+    margin-right: 10px;
+    color: rgb(237, 67, 124);
+}
+#p1{
+    color: #333;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+    font-size: 16px;
+}
+.ContactForm{
+    display: flex;
+    flex-direction: column;
+    background: rgb(242, 167, 192);
+    border-radius: 12px;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0,0, 0.1);
+}
+.ContactForm label{
+    display: flex;
+    font-weight: bold;
+    color: #555;
+    justify-content: start;
+    padding-left: 30px;
+
+}
+.ContactForm input, .ContactForm textarea{
+    width: auto;
+    padding: 10px;
+    margin-right: 35%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    border-color: black;
+}
+.ContactForm button{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 10px auto;
+    background: rgb(237, 67, 124);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.ContactForm button:hover{
+    background: rgb(237, 67, 124, 0.8);
+}
+.ContactForm1{
+     display: flex;
+    gap: 30px;
+    align-items: flex-start;
+     justify-content: center;   
+     margin-top: 50px;
+}
+li{
+    list-style: none;
+}
+#contact1{
+    background: rgb(242, 167, 192);
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0,0, 0.1);
+    margin-bottom: 30px;    
+}
+#contact1, .ContactForm{
+    padding: 20px;
+    border-radius: 15px;
+    width: 45%;
+}
+h3{
+    color: rgb(239, 39, 106);
+    display: flex;
+    position: relative;
+}
+
+    </style>
+</head>
+<body>
+   
+<div class="Contact">
+    <h2><i class="fa-solid fa-headset"></i> Contact Us</h2>
+    <p id="p1">We'd love to hear from you! Whether you have questions about our cakes, need assistance with an order, or just want to say hello, our team is here to help.</p>
+    <div class="ContactForm1">
+       <div id="contact1">
+         <ul>
+             <li><i class="fa-solid fa-phone"></i>  +91 9876543210</li>
+            <li><i class="fa-solid fa-envelope"></i>  info@fitbakes.com</li>
+            <li><i class="fa-solid fa-location-dot"></i>123 Cake Street, Sweet City, Country</li>
+         </ul>
+
+         <h3>Connect With Us</h3>
+           <i class="fa-brands fa-instagram"></i>
+           <i class="fa-brands fa-facebook"></i>
+           <i class="fa-brands fa-whatsapp"></i>
+           <i class="fa-brands fa-youtube"></i>
+           <img src="images/cake2.jpg" alt="Contact Us" style="width:100%; margin-top:20px; border-radius: 8px;"> 
+
+     </div>
+    <form action="submit_contact.php" method="post" class="ContactForm">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+        <button type="submit">Send Message</button>
+    </form>
+    
+      </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-section">
+      <h3>FitBakes</h3>
+      <p>Healthy cakes for every celebration. 
+      Enjoy delicious treats with balanced ingredients made for your lifestyle.</p>
+    </div>
+
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="menu.php">Menu</a></li>
+        <li><a href="health.html">Health Cakes</a></li>
+        <li><a href="Profile.php">Profile</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Health Cakes</h3>
+      <ul>
+        <li>Diabetic Friendly Cakes</li>
+        <li>Protein Cakes</li>
+        <li>Low Sugar Cakes</li>
+        <li>Diet Friendly Cakes</li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Follow Us</h3>
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 FitBakes | Healthy Cakes Made With Love 💗</p>
+  </div>
+</footer>
+</body>
+</html>

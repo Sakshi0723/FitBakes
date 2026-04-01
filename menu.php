@@ -8,25 +8,9 @@
     <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <link rel="preconnect" href="https://fonts.googleapis.com">
-</head>
-<body>
-    <header>
-   <div class="header">
-     <img class="Logo" src="images\Logo.png" alt="LOGO">
-    <nav class="nevigation">
-        <a href="Home.html"><i class="fa-solid fa-house"></i>&nbsp;&nbsp;Home</a>
-        <a href="menu.php"><i class="fa-solid fa-bars"></i>&nbsp;&nbsp;Menu</a>
-        <a href="reminder.html"> <i class="fa-solid fa-calendar-days"></i></a>
-        <a href="health.html"><i class="fa-solid fa-heart-pulse"></i> Health Suggestions</a>
-        <a href="fav.html"><i class="fa-solid fa-heart" style="color: #f90101;"></i></a>
-        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
-        <a href="Profile.php"><i class="fa-solid fa-circle-user"></i>&nbsp;&nbsp;Profile</a>
-      </nav>
-    </div>
-</header>
- <style>
+      <style>
     h2{
-      margin-bottom:20px;
+      margin-bottom:40px;
         text-align:center;
         font-family: "Anton", sans-serif;
         background-color:white;
@@ -39,6 +23,8 @@
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
       gap:20px;
+      margin-left:10px;
+      margin-right:10px;
     }
 
     .category{
@@ -56,9 +42,12 @@
     }
 
     .category span{
+       pointer-events: none;
       position:absolute;
       width:100%;
-      height: 550px;
+      height: 100%;
+      top: 0;
+      left: 0;
       text-align:center;
       padding-top:50%;
       background:rgba(0,0,0,0.6);
@@ -150,6 +139,23 @@ cursor:pointer;
 h2,h3{font-size:18px;}
 }
   </style>
+</head>
+<body>
+    <header>
+   <div class="header">
+     <img class="Logo" src="images\Logo.png" alt="LOGO">
+    <nav class="nevigation">
+        <a href="Home.html"><i class="fa-solid fa-house"></i>&nbsp;&nbsp;Home</a>
+        <a href="menu.php"><i class="fa-solid fa-bars"></i>&nbsp;&nbsp;Menu</a>
+        <a href="reminder.html"> <i class="fa-solid fa-calendar-days"></i></a>
+        <a href="health.html"><i class="fa-solid fa-heart-pulse"></i> Health Suggestions</a>
+        <a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a href="order .php"><i class="fa-solid fa-box"></i>&nbsp;&nbsp;My Orders</a>
+        <a href="Profile.php"><i class="fa-solid fa-circle-user"></i>&nbsp;&nbsp;Profile</a>
+      </nav>
+    </div>
+</header>
+
  <?php include "fitbakes_database.php"; ?>
 <h2>Cake Categories</h2>
 
@@ -320,20 +326,37 @@ while ($row = mysqli_fetch_assoc($result)) {
     document.querySelectorAll('.products').forEach(p=>p.style.display='none');
   }
 
-function addToCart(product) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let userId = <?php echo $_SESSION['user_id'] ?? 'null'; ?>;
 
-  let existing = cart.find(item => item.id === product.id);
+function addToCart(id, name, price, image){
 
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    product.quantity = 1;
-    cart.push(product);
+  if(!userId){
+    alert("Please login first!");
+    window.location.href = "Login-Register.html";
+    return;
   }
 
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert(product.name + " added to cart");
+  let cartKey = "cart_" + userId;
+
+  let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+
+  let existing = cart.find(item => Number(item.id) === Number(id));
+
+  if(existing){
+    existing.quantity += 1;
+  } else {
+    cart.push({
+      id: id,
+      name: name,
+      price: price,
+      image: image,
+      quantity: 1
+    });
+  }
+
+  localStorage.setItem(cartKey, JSON.stringify(cart));
+
+  alert("Added to cart 🛒");
 }
 
 function backToProducts(){
@@ -356,26 +379,6 @@ function viewProduct(id, name, price, image, desc){
 }
 
 
-/*function orderNow() {
-
-    let weight = document.getElementById("weight").value;
-    let message = document.getElementById("message").value;
-
-    fetch("Review.php", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: "product_id=" + selectedProductId +
-              "&weight=" + encodeURIComponent(weight) +
-              "&message=" + encodeURIComponent(message)
-    })
-    .then(response => response.text())
-    .then(data => {
-        alert("Order Placed Successfully!");
-        window.location.href = "Review.php";
-    });
-}*/
 </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile</title>
     <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -195,35 +195,56 @@ $result = mysqli_query($conn, "SELECT * FROM register_tbl WHERE user_id = $user_
 $user = mysqli_fetch_assoc($result);
 ?>
 <body>
-        <h1 id="p1"><a href="Home.html"><i class="fa-solid fa-less-than"></i></a>&nbsp;&nbsp;Profile</h1>
+        <h1 id="p1"><a href="menu.php"><i class="fa-solid fa-less-than"></i></a>&nbsp;&nbsp;Profile</h1>
         <hr>
       <div>
-      <div class="photo-wrapper">
-  <div id="preview">
-    <?php if(!empty($user['profile_pic'])): ?>
-        <img src="<?php echo $user['profile_pic']; ?>" class="profile">
-      <?php else: ?>
-        <i class="fa-solid fa-user"></i>
-      <?php endif; ?>
-  </div>
-  <button id="editBtn" style="display:none;">Edit Photo</button>
+     <form action="upload_photo.php" method="POST" enctype="multipart/form-data">
+<div class="photo-wrapper">
+<div id="preview">
+<?php if(!empty($user['profile_pic'])): ?>
+<img src="<?php echo $user['profile_pic']; ?>" class="profile">
+<?php else: ?>
+<i class="fa-solid fa-user"></i>
+<?php endif; ?>
 </div>
-        <button class="upload" id="uploadBtn">Upload Photo </button> 
-         <input type="file" id="photo" accept="image/*" style="display: none;">
-  <h3>Username: <?php echo $user['username']; ?></h3>
-  <h3>Mobile No: <?php echo $user['Mobile_No']; ?></h3>
-  <h3>Email Id: <?php echo $user['Email_id']; ?></h3>
-  <h3>Date Of Birth: <?php echo $user['Birth_Date']; ?></h3>
-  <button class="edit">Edit Profile</button>
+<input type="file" name="photo" id="photo" accept="image/*" hidden>
+<button type="submit" class="upload" id="uploadBtn">Upload Photo</button>
+</div>
+</form>
+
+<h3>Username:
+<input type="text" name="username" id="username" 
+value="<?php echo $user['username']; ?>" disabled>
+</h3>
+
+<h3>Mobile No:
+<input type="text" name="mobile" id="mobile" 
+value="<?php echo $user['Mobile_No']; ?>" disabled>
+</h3>
+
+<h3>Email Id:
+<input type="email" name="email" id="email" 
+value="<?php echo $user['Email_id']; ?>" disabled>
+</h3>
+
+<h3>Date Of Birth:
+<input type="date" name="dob" id="dob" 
+value="<?php echo $user['Birth_Date']; ?>" disabled>
+</h3>
+
+<button type="button" class="edit" onclick="enableEdit()">Edit Profile</button>
+<button type="submit" class="login" id="saveBtn" style="display:none;">Save Profile</button>
+
+</form>
 <hr>
 <p class="section-title">My Payments</p>
 <div class="option">
   <i class="fa-solid fa-credit-card"></i>
-  <span>Bank & UPI Details</span>
+  <span><a href="BankUpi.html">Bank & UPI Details</a></span>
 </div>
 <div class="option">
   <i class="fa-solid fa-money-bill-transfer"></i>
-  <span>Payment & Refund</span>
+  <span><a href="PaymentRefund.html">Payment & Refund</a></span>
 </div>
 <hr>
 <p class="section-title">Orders</p>
@@ -236,11 +257,11 @@ $user = mysqli_fetch_assoc($result);
 <p class="section-title">Help & Support</p>         
 <div class="option">
   <i class="fa-solid fa-circle-question"></i>
-  <span>FAQ</span>
+  <span><a href="FAQ.html">FAQ</a></span>
 </div>
 <div class="option">
   <i class="fa-solid fa-headset"></i>
-  <span>Contact Us</span>
+  <span><a href="Contact.html">Contact Us</a></span>
 </div>
    <hr>
   <div class="option">
@@ -303,6 +324,16 @@ editBtn.addEventListener('click', () => {
   // Open file picker again
   photoInput.click();
 });
+function enableEdit(){
+
+document.getElementById("username").disabled = false;
+document.getElementById("mobile").disabled = false;
+document.getElementById("email").disabled = false;
+document.getElementById("dob").disabled = false;
+
+document.getElementById("saveBtn").style.display = "block";
+
+}
 
 </script>
 </html>

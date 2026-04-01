@@ -49,6 +49,158 @@ details p {
 details ul {
   color: white;
 }
+#chat {
+ position: fixed;
+  bottom: 50px;
+  right: 20px;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+}
+#chatIcon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #e60550;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#chatBox {
+  position: fixed;
+  bottom: 90px;
+  right: 25px;
+  width: 360px;
+  height: 500px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+.chat-header {
+  background: #ff4081;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chat-controls i {
+  margin-left: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.chat-controls i:hover {
+  color: black;
+}
+
+.minimized {
+  height: 50px !important;
+}
+
+.maximized {
+  width: 90% !important;
+  height: 85vh !important;
+  right: 5% !important;
+  bottom: 5% !important;
+}
+
+#chatMessages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background: #f9f9f9;
+  font-size: 14px;
+}
+.chat-input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background: white;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.send-btn {
+  margin-left: 8px;
+  background: #ff4081;
+  border: none;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.send-btn:hover {
+  background: #e73370;
+}
+.user-msg {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.user-msg b {
+  background: #ff4081;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 15px 15px 0 15px;
+  display: inline-block;
+}
+
+.bot-msg {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.bot-msg b {
+  background: #eeeeee;
+  padding: 8px 12px;
+  border-radius: 15px 15px 15px 0;
+  display: inline-block;
+}
+
+.typing {
+  display: inline-block;
+}
+
+.typing span {
+  height: 8px;
+  width: 8px;
+  background: #ff4081;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 2px;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.typing span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+.typing span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
 </style>
 
 <body>
@@ -60,8 +212,6 @@ details ul {
         <a href="menu.php"><i class="fa-solid fa-bars"></i>&nbsp;&nbsp;Menu</a>
         <a href="reminder.html"> <i class="fa-solid fa-calendar-days"></i></a>
         <a href="health.html"><i class="fa-solid fa-heart-pulse"></i> Health Suggestions</a>
-        <a href="fav.html"><i class="fa-solid fa-heart" style="color: #f90101;"></i></a>
-        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
         <a href="Profile.php"><i class="fa-solid fa-circle-user"></i>&nbsp;&nbsp;Profile</a>
     </nav>
     </div>
@@ -128,5 +278,92 @@ Less cream, more natural flavors</li>
 </p>
   </details>
 </div>
+<p id="chat">Ask Me Something About Your Health Goals!</p>
+<div id="chatIcon" onclick="toggleChat()">💬</div>
+
+<div id="chatBox">
+  <div class="chat-header">
+  <span>FitBakes Assistant 🤖</span>
+  <div class="chat-controls">
+    <i class="fa-solid fa-minus" onclick="minimizeChat()"></i>
+    <i class="fa-solid fa-expand" onclick="maximizeChat()"></i>
+    <i class="fa-solid fa-xmark" onclick="closeChat()"></i>
+  </div>
+</div>
+  <div id="chatMessages"></div>
+ <div class="chat-input">
+  <input type="text" id="userInput" placeholder="Ask something..." onkeypress="handleKey(event)">
+  <button onclick="sendMessage()" class="send-btn">
+    <i class="fa-solid fa-paper-plane"></i>
+  </button>
+</div>
+</div>
+
+<script>
+function toggleChat() {
+  let box = document.getElementById("chatBox");
+
+  if (box.style.display === "flex") {
+    box.style.display = "none";
+  } else {
+    box.style.display = "flex";
+  }
+}
+
+function handleKey(event){
+  if(event.key === "Enter"){
+    sendMessage();
+  }
+}
+
+function sendMessage(){
+  let input = document.getElementById("userInput");
+  let message = input.value.trim();
+  if(message === "") return;
+
+  input.value = "";
+
+   let chat = document.getElementById("chatMessages");
+
+   chat.innerHTML += `<div class="user-msg"><b>You:</b> ${message}</div>`;
+
+     let typingId = "typing-" + Date.now();
+  chat.innerHTML += `<div class="bot-msg" id="${typingId}">
+      <span class="typing">
+        <span></span><span></span><span></span>
+      </span>
+    </div>`;
+  chat.scrollTop = chat.scrollHeight;
+
+  fetch("chatbot_response.php", {
+    method: "POST",
+    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+    body: "message=" + encodeURIComponent(message)
+  })
+  .then(res => res.text())
+  .then(data => {
+
+    // Delay for realistic thinking
+    setTimeout(() => {
+      document.getElementById(typingId).innerHTML =
+        `<b>Bot:</b> ${data}`;
+      chat.scrollTop = chat.scrollHeight;
+    }, 1500); // 1.5 seconds delay
+  });
+}
+function minimizeChat() {
+  let box = document.getElementById("chatBox");
+  box.classList.toggle("minimized");
+}
+
+function maximizeChat() {
+  let box = document.getElementById("chatBox");
+  box.classList.toggle("maximized");
+}
+
+function closeChat() {
+  document.getElementById("chatBox").style.display = "none";
+}
+</script>
 </body>
 </html>

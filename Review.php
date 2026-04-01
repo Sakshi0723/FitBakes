@@ -115,6 +115,7 @@ $total = $product['price'] * $quantity;
 
   <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
   <input type="hidden" name="quantity" value="<?= $quantity ?>">
+  <input type="hidden" name="price" value="<?= $product['price'] ?>">
   <input type="hidden" name="weight" value="<?= htmlspecialchars($weight) ?>">
   <input type="hidden" name="message" value="<?= htmlspecialchars($message) ?>">
   <input type="hidden" name="total" value="<?= $total ?>">

@@ -14,8 +14,9 @@ $quantity = $_POST['quantity'];
 $weight = $_POST['weight'];
 $message = $_POST['message'];
 $total = $_POST['total'];
+$price = $_POST['price'];
 
-mysqli_query($conn, "INSERT INTO my (product_id, quantity, weight, message, total, user_id) VALUES ('$product_id', '$quantity', '$weight', '$message', '$total', '$user_id')");
+mysqli_query($conn, "INSERT INTO my (product_id,price, quantity, weight, message, total, user_id) VALUES ('$product_id', '$price', '$quantity', '$weight', '$message', '$total', '$user_id')");
 header("Location: Order.php");
 ?>
 

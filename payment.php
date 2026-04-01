@@ -66,7 +66,7 @@ include "fitbakes_database.php";
 if (!isset($_POST['total'])) {
     die("Invalid Access");
 }
-
+$price = $_POST['price'];
 $product_id = $_POST['product_id'];
 $quantity = $_POST['quantity'];
 $weight = $_POST['weight'];
@@ -80,15 +80,18 @@ $total = $_POST['total'];
   <h2>Payment Page</h2>
 
 <p>Total Amount: ₹<?= $total ?></p>
-
+  <input type="hidden" name="price" value="<?= $price ?>">
   <input type="hidden" name="product_id" value="<?= $product_id ?>">
   <input type="hidden" name="weight" value="<?= htmlspecialchars($weight) ?>">
 <input type="hidden" name="message" value="<?= htmlspecialchars($message) ?>">
   <input type="hidden" name="quantity" value="<?= $quantity ?>">
   <input type="hidden" name="total" value="<?= $total ?>">
 
-  <label>Card Number:</label>
-  <input type="text" required>
+<select name="payment_method">
+<option>UPI</option>
+<option>Card</option>
+<option>Cash on Delivery</option>
+</select>
 
   <br><br>
   <button class="btn" type="submit">Pay & Place Order</button>

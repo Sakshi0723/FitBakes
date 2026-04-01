@@ -15,7 +15,7 @@ if(mysqli_num_rows($result_check) > 0){
 
     echo "<script>
             alert('You are already registered! Please login.');
-            window.location.href='Login-Register.html';
+            window.location.href='Login-Register.php';
           </script>";
 
 } else {
@@ -26,7 +26,7 @@ if(mysqli_num_rows($result_check) > 0){
     if(mysqli_query($conn, $sql)){
         echo "<script>
                 alert('Register successfully!');
-                window.location.href='Login-Register.html';
+                window.location.href='Login-Register.php';
               </script>";
     } else {
         echo "Error: " . mysqli_error($conn);
