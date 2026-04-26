@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>FitBakes</title>
     <link rel="Stylesheet" href="Home.css">
     <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -64,7 +64,7 @@
 
     .product-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      grid-template-columns:repeat(4, 1fr);
       gap:20px;
     }
 
@@ -149,8 +149,8 @@ h2,h3{font-size:18px;}
         <a href="menu.php"><i class="fa-solid fa-bars"></i>&nbsp;&nbsp;Menu</a>
         <a href="reminder.html"> <i class="fa-solid fa-calendar-days"></i></a>
         <a href="health.html"><i class="fa-solid fa-heart-pulse"></i> Health Suggestions</a>
-        <a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a>
-        <a href="order .php"><i class="fa-solid fa-box"></i>&nbsp;&nbsp;My Orders</a>
+        <!-- <a href="cart.php"><i class="fa-solid fa-cart-shopping"></i></a> -->
+        <a href="order.php"><i class="fa-solid fa-box"></i>&nbsp;&nbsp;My Orders</a>
         <a href="Profile.php"><i class="fa-solid fa-circle-user"></i>&nbsp;&nbsp;Profile</a>
       </nav>
     </div>
@@ -177,8 +177,10 @@ h2,h3{font-size:18px;}
   </div>
 
   <div class="category">
-     <a href="custome.html"><span>Design Your Own cake</span></a>
+     <a href="custome.html">
     <img src="c1.jpg" alt="Wedding Cakes">
+    <span>Design Your Own cake</span>
+    </a>
   </div>
 </div>
 
@@ -202,11 +204,8 @@ while ($row = mysqli_fetch_assoc($result)) {
       '₹<?= $row['price'] ?>',
       '<?= $row['image'] ?>',
       '<?= $row['description'] ?>'
-    )">View Item</button>
+    )">Order Now</button>
 
-    <button class="btn-cart"onclick="addToCart(<?= htmlspecialchars(json_encode($row)) ?>)">
-      Add To Cart
-    </button>
   </div>
 <?php } ?>
 
@@ -234,11 +233,8 @@ while ($row = mysqli_fetch_assoc($result)) {
       '₹<?= $row['price'] ?>',
       '<?= $row['image'] ?>',
       '<?= $row['description'] ?>'
-    )">View Item</button>
+    )">Order Now</button>
 
-    <button class="btn-cart" onclick="addToCart(<?= htmlspecialchars(json_encode($row)) ?>)">
-      Add To Cart
-    </button>
   </div>
 <?php } ?>
 
@@ -265,11 +261,8 @@ while ($row = mysqli_fetch_assoc($result)) {
       '₹<?= $row['price'] ?>',
       '<?= $row['image'] ?>',
       '<?= $row['description'] ?>'
-    )">View Item</button>
+    )">Order Now</button>
 
-    <button class="btn-cart" onclick="addToCart(<?= htmlspecialchars(json_encode($row)) ?>)">
-      Add To Cart
-    </button>
   </div>
 <?php } ?>
 
@@ -303,7 +296,7 @@ while ($row = mysqli_fetch_assoc($result)) {
       
  <input type="hidden" name="product_id" id="hiddenProductId">
 
-  <button class="btn-buy" type="submit">Order Now</button>
+  <button class="btn-buy" type="submit">place Order</button>
 </form>
     
 
@@ -328,36 +321,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 let userId = <?php echo $_SESSION['user_id'] ?? 'null'; ?>;
 
-function addToCart(id, name, price, image){
 
-  if(!userId){
-    alert("Please login first!");
-    window.location.href = "Login-Register.html";
-    return;
-  }
-
-  let cartKey = "cart_" + userId;
-
-  let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
-
-  let existing = cart.find(item => Number(item.id) === Number(id));
-
-  if(existing){
-    existing.quantity += 1;
-  } else {
-    cart.push({
-      id: id,
-      name: name,
-      price: price,
-      image: image,
-      quantity: 1
-    });
-  }
-
-  localStorage.setItem(cartKey, JSON.stringify(cart));
-
-  alert("Added to cart 🛒");
-}
 
 function backToProducts(){
   document.getElementById('productView').style.display='none';

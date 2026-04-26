@@ -125,6 +125,13 @@ i {
   text-align: center;
   position: relative;
 }
+#username, #mobile, #email, #dob, #address {
+  padding: 8px;
+  margin-top: 4px;
+  border: none;
+  background: #f3eef9;
+  border-radius: 8px;
+}
 
 #preview {
   width: 100px;
@@ -230,6 +237,10 @@ value="<?php echo $user['Email_id']; ?>" disabled>
 <h3>Date Of Birth:
 <input type="date" name="dob" id="dob" 
 value="<?php echo $user['Birth_Date']; ?>" disabled>
+</h3>
+<h3>Address
+<input type="text" name="address" id="address" 
+value="<?php echo $user['address']; ?>" disabled>
 </h3>
 
 <button type="button" class="edit" onclick="enableEdit()">Edit Profile</button>
