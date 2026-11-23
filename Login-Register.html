@@ -1,123 +1,401 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <title>FitBakes | Register & Login</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        *{
+
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-         }
-        body{
+        }
+
+        body {
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background-color:palevioletred ;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f7a8c4, #e879a5, #f9c4d7);
+            padding: 20px;
+        }
+
+        /* Main Container */
+
+        .main-container {
+            width: 900px;
+            min-height: 550px;
+            display: flex;
+            background: rgba(255,255,255,0.95);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(104, 25, 59, 0.25);
+            animation: appear 0.7s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
             }
-         .log-register-box{
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Left Side */
+
+        .welcome-section {
+            width: 42%;
+            background: linear-gradient(160deg, #c2185b, #e75480, #f48fb1);
             display: flex;
             flex-direction: column;
-            position: relative;
-            background-color:transparent;
-            border: 2px solid white;
-            backdrop-filter: blur(50px);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-             width: 400px;
-            height: 450px;
             justify-content: center;
             align-items: center;
-            gap: 5px 20px;
+            text-align: center;
+            padding: 35px;
             color: white;
         }
-        input{
-            border-radius: 5px;
-            height: 30px;
-            width: 250px;
-            background-color: transparent;
-            border: 1px solid white;
-            color: white;
-            padding-left:10px ;
+
+        .welcome-section i {
+            font-size: 65px;
+            margin-bottom: 20px;
         }
-        ::placeholder{
-            color: white;
-            padding-left: 10px;
+
+        .welcome-section h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 48px;
+            margin-bottom: 15px;
         }
-        button{
-            height: 35px;
-            width: 150px;
-            border-radius: 5px;
+
+        .welcome-section p {
+            font-size: 14px;
+            line-height: 1.9;
+            color: #ffeaf2;
+        }
+
+        .welcome-section .tagline {
+            margin-top: 25px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        /* Right Side */
+
+        .form-section {
+            width: 58%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 35px 40px;
+        }
+
+        .form-content {
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .form-content h2 {
+            color: #c2185b;
+            font-size: 30px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #999;
+            text-align: center;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        /* Input Fields */
+
+        .input-box {
+            position: relative;
+            margin-bottom: 17px;
+        }
+
+        .input-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #d65b87;
+            font-size: 15px;
+        }
+
+        .input-box input {
+            width: 100%;
+            height: 47px;
+            padding: 10px 15px 10px 43px;
+            border: 1px solid #f1c2d3;
+            border-radius: 10px;
+            outline: none;
+            font-size: 13px;
+            font-family: 'Poppins', sans-serif;
+            color: #555;
+            background: #fff8fb;
+            transition: 0.3s;
+        }
+
+        .input-box input:focus {
+            border-color: #d63378;
+            background: white;
+            box-shadow: 0 0 8px rgba(214, 51, 120, 0.15);
+        }
+
+        .input-box input::placeholder {
+            color: #aaa;
+        }
+
+        /* Buttons */
+
+        .submit-btn {
+            width: 100%;
+            height: 47px;
             border: none;
-            background-color: white;
-            color: palevioletred;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #c2185b, #e75480);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #a3154c, #c2185b);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(194, 24, 91, 0.25);
+        }
+
+        /* Switch Login/Register */
+
+        .switch-text {
+            text-align: center;
+            margin-top: 23px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .switch-text a {
+            text-decoration: none;
+            color: #c2185b;
+            font-weight: 600;
             cursor: pointer;
         }
-        button:hover{
-            color: white;
-            background-color: rgb(243, 151, 182);
+
+        .switch-text a:hover {
+            text-decoration: underline;
         }
-        </style>
+
+        /* Hide Forms */
+
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+
+        @media(max-width: 700px) {
+
+            .main-container {
+                width: 100%;
+                max-width: 450px;
+                flex-direction: column;
+            }
+
+            .welcome-section {
+                width: 100%;
+                padding: 25px 15px;
+            }
+
+            .welcome-section i {
+                font-size: 40px;
+                margin-bottom: 8px;
+            }
+
+            .welcome-section h1 {
+                font-size: 38px;
+            }
+
+            .welcome-section p {
+                font-size: 12px;
+            }
+
+            .welcome-section .tagline {
+                display: none;
+            }
+
+            .form-section {
+                width: 100%;
+                padding: 30px 25px;
+            }
+        }
+
+    </style>
 </head>
+
 <body>
-  <form action="get_register.php" method="post">
-    <div class="REGISTER">
-    <div class="log-register-box">
-        <h2>Register</h2>
-        <br>
-    <input type="text" name="username" placeholder="username">
-    <br>
-    <input type="text" name="Mobile_No" placeholder="Mobile No"> 
-    <br>
-    <input type="email" name="Email_id" placeholder="Email id">
-    <br>
-    <input type="date" name="Birth_Date" placeholder="Date of Birth"> 
-    <br>
-    <input type="password" name="password" placeholder="Password">
-    <br>
-    <button>Register</button>
-    <br>
-    <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
-    </div>
-   </div>
-  </form>
-  
-   <form name="f1" action="get_login.php" method="post">
-    <div class="LOGIN" style="display:none;">
-    <div class="log-register-box">
-      <h2>Login</h2>
-      <br>
-    <input type="text" name="username" placeholder="username">
-    <br>
-    <input type="password" name="password" placeholder="Password">
-    <br>
-    <button>Login</button>
-    <br>
-    <p>Don't have an account? <a href="#" id="showRegister">Register</a></p>  
-    </div>
-    </div>
-</form>
-    <script>
-    document.getElementById("showLogin").onclick = function () 
-  {
-    document.querySelector(".REGISTER").style.display = "none";
-    document.querySelector(".LOGIN").style.display = "block";
-  };
 
-    document.getElementById("showRegister").onclick = function () 
-  {
-    document.querySelector(".LOGIN").style.display = "none";
-    document.querySelector(".REGISTER").style.display = "block";
-  };
+<div class="main-container">
 
-    </script>
+    <!-- Welcome Section -->
+
+    <div class="welcome-section">
+
+        <i class="fa-solid fa-cake-candles"></i>
+
+        <h1>FitBakes</h1>
+
+        <p>
+            Healthy cakes for every celebration.
+            Enjoy delicious treats made with love
+            and balanced ingredients.
+        </p>
+
+        <div class="tagline">
+            Sweetness with a Healthy Twist! 💗
+        </div>
+
+    </div>
+
+
+    <!-- Register/Login Section -->
+
+    <div class="form-section">
+
+        <!-- REGISTER FORM -->
+
+        <div class="form-content" id="registerForm">
+
+            <h2>Create Account</h2>
+
+            <p class="subtitle">
+                Join FitBakes and make every celebration sweeter!
+            </p>
+
+            <form action="get_register.php" method="post">
+
+                <div class="input-box">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="username"
+                    placeholder="Username" required>
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-phone"></i>
+                    <input type="tel" name="Mobile_No"
+                    placeholder="Mobile Number" required>
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" name="Email_id"
+                    placeholder="Email Address" required>
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-calendar"></i>
+                    <input type="date" name="Birth_Date" required>
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="password"
+                    placeholder="Password" required>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    Register <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </form>
+
+            <p class="switch-text">
+                Already have an account?
+                <a id="showLogin">Login</a>
+            </p>
+
+        </div>
+
+
+        <!-- LOGIN FORM -->
+
+        <div class="form-content hidden" id="loginForm">
+
+            <h2>Welcome Back!</h2>
+
+            <p class="subtitle">
+                Login to continue your sweet journey.
+            </p>
+
+            <form name="f1" action="get_login.php" method="post">
+
+                <div class="input-box">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" name="username"
+                    placeholder="Username" required>
+                </div>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="password"
+                    placeholder="Password" required>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    Login <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </form>
+
+            <p class="switch-text">
+                Don't have an account?
+                <a id="showRegister">Register</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+    const registerForm = document.getElementById("registerForm");
+    const loginForm = document.getElementById("loginForm");
+
+    document.getElementById("showLogin").onclick = function() {
+
+        registerForm.classList.add("hidden");
+        loginForm.classList.remove("hidden");
+
+    };
+
+    document.getElementById("showRegister").onclick = function() {
+
+        loginForm.classList.add("hidden");
+        registerForm.classList.remove("hidden");
+
+    };
+
+</script>
+
 </body>
 </html>
